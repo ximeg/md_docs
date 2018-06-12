@@ -27,3 +27,6 @@ Now edit the files. As soon as they are modified the document is recompiled. The
 
 **Pro tip:** you can embed `live.js` into  `00_header.md` and serve the HTML page via a simple web server, i.e. Python `SimpleHTTPServer`. Then the browser updates the page only when it changed, e.g. synchronously.
 
+### Change style
+
+The style of the final webpage is determined by the CSS file `.pandoc_style.css`
