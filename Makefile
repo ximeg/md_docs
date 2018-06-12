@@ -29,7 +29,6 @@ watch:
 	while true; do \
 		inotifywait -qr -e modify -e create -e delete -e move src; \
 		make all; \
-        xdotool key --window $(shell xdotool search --onlyvisible --class $(BROWSER) | head -1) 'CTRL+r'; \
 	done
 
 # User-created MD files
