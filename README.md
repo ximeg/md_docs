@@ -5,4 +5,4 @@ Template for HTML documentation generated from markdown via pandoc
 
 * GNU Make
 * pandoc
-* inotifywait
+* inotify-tools
