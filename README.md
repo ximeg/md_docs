@@ -11,6 +11,8 @@ Template for HTML documentation generated from markdown via pandoc
 
 ### Edit files
 
+First of all, edit `src/metadata.yaml`: title, author, abstract, etc.
+
 Place your Markdown files into the folder `src`. Their filenames determine their order in the final document.
 
 Images go into the `src/img` folder.

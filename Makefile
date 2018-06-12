@@ -41,8 +41,11 @@ MD_HERE := $(patsubst src/%, %, $(MD))
 all: $(TARGET)
 
 # create the main HTML file
-$(TARGET): $(CSS) $(MD)
-	cd src && pandoc -s --verbose --self-contained --css ../$< $(MD_HERE) -o $@
+$(TARGET): $(CSS) $(MD) src/metadata.yaml
+	cd src && pandoc -s --verbose --self-contained --css ../$< \
+	  -V date="$(shell date +%Y-%m-%d%n)" \
+	  metadata.yaml \
+	  $(MD_HERE) -o $@
 	mv src/$@ $@
 
 clean:

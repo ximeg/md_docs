@@ -1,0 +1,14 @@
+---
+title:  'This is a Test Document'
+author:
+- Author One
+- Author Two
+tags: [nothing, nothingness]
+abstract: |
+  This is the abstract.
+
+  It consists of two paragraphs.
+---
+
+<!-- The line below forces automatic refresh of the document every X seconds -->
+<meta http-equiv="refresh" content="20" >
