@@ -19,8 +19,18 @@
 NAME := report
 CSS := .pandoc_style.css
 TARGET := $(NAME).html
+BROWSER := firefox
+
+.PHONY: watch
 
 all: $(TARGET)
+
+watch:
+	while true; do \
+		inotifywait -qr -e modify -e create -e delete -e move src; \
+		make all; \
+        xdotool key --window $(shell xdotool search --onlyvisible --class $(BROWSER) | head -1) 'CTRL+r'; \
+	done
 
 # User-created MD files
 MD := $(filter %.md, $(wildcard src/*))
@@ -33,7 +43,7 @@ all: $(TARGET)
 
 # create the main HTML file
 $(TARGET): $(CSS) $(MD)
-	cd src && pandoc -s --self-contained --css ../$< $(MD_HERE) -o $@
+	cd src && pandoc -s --verbose --self-contained --css ../$< $(MD_HERE) -o $@
 	mv src/$@ $@
 
 clean:

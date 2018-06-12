@@ -222,13 +222,13 @@ figure img {
   margin-right: auto;
 }
 
-figcaption {
-  font-size: 0.8em;
+.caption {
+  font-size: 1em;
   font-style: italic;
   text-align: center;
-  display: block;
-  margin: auto;
-  /*margin: 0 0 .8em;*/
+  margin: 0.5em;
+  padding: 0.5em;
+  text-indent: 0;
 }
 
 table {
@@ -334,3 +334,5 @@ table td {
     page-break-after: avoid;
   }
 }
+
+
