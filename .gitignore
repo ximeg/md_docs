@@ -1,2 +1,4 @@
 .pandoc_style.css
 *.html
+*.pdf
+*.docx
