@@ -16,20 +16,18 @@
 
 
 #################### DEFINITIONS #######################
-NAME := report
+TARGET := pipeline_topology
 CSS := .pandoc_style.css
-TARGET := $(NAME).html
 BROWSER := firefox
 
 .PHONY: watch
 
-all: $(TARGET)
+all: html
 
-watch:
-	while true; do \
-		inotifywait -qr -e modify -e create -e delete -e move src; \
-		make all; \
-	done
+html: FORMAT = html
+docx: FORMAT = docx
+pdf:  FORMAT = pdf
+	ENGINE = --pdf-engine wkhtmltopdf
 
 # User-created MD files
 MD := $(filter %.md, $(wildcard src/*))
@@ -38,15 +36,19 @@ MD_HERE := $(patsubst src/%, %, $(MD))
 
 
 #################### RULES #######################
-all: $(TARGET)
+watch:
+	while true; do \
+		inotifywait -qr -e modify -e create -e delete -e move src; \
+		make all; \
+	done
 
-# create the main HTML file
-$(TARGET): $(CSS) $(MD) src/metadata.yaml
-	cd src && pandoc -s --verbose --self-contained --css ../$< \
+# Call pandoc to convert the files
+html docx pdf: $(CSS) $(MD) src/metadata.yaml $(FORMAT)
+	cd src && /usr/bin/pandoc -s --verbose --self-contained --css ../$< \
 	  -V date="$(shell date +%Y-%m-%d%n)" \
-	  metadata.yaml \
-	  $(MD_HERE) -o $@
-	mv src/$@ $@
+	  metadata.yaml $(ENGINE) \
+	  $(MD_HERE) -o ../$(TARGET).$(FORMAT)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET).html $(TARGET).docx
+

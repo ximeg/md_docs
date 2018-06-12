@@ -3,9 +3,10 @@ Template for HTML documentation generated from markdown via pandoc
 
 ## Requirements
 
-* GNU Make
-* pandoc
-* inotify-tools
+* `GNU Make`
+* `pandoc`
+* `inotify-tools` for automatic rebuild (optional)
+* `wkhtmltopdf` for PDF generation (optional)
 
 ## How to use
 
